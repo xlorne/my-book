@@ -10,4 +10,6 @@ import com.codingapi.book.mybook.model.Catalog;
 public interface GitService {
 
     Catalog loadCatalog();
+
+
 }

@@ -1,0 +1,35 @@
+blockquote {
+    font: 18px normal helvetica, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding-left: 8px;
+    border-left: 9px solid #ccc;
+}
+
+pre{
+    font:14px normal helvetica,sans-serif;
+    background-color:#EFEFEF;
+    color:#333333;
+    margin-left:5px;
+    padding: 10px;
+    margin-right:30px;
+}
+
+a{
+    font:16px normal helvetica,sans-serif;
+}
+
+blockquote p{
+    font-size:18px;
+    margin-left:0px;
+}
+
+p{
+    font-size:14px;
+    margin-left:10px;
+}
+
+p code{
+    background-color:#EDEDEF
+}
