@@ -1,6 +1,6 @@
 package com.codingapi.book.mybook.service.impl;
 
-import com.codingapi.book.mybook.helper.GitHelper;
+import com.codingapi.book.mybook.helper.BookGitHelper;
 import com.codingapi.book.mybook.helper.MarkdownHelper;
 import com.codingapi.book.mybook.model.Book;
 import com.codingapi.book.mybook.service.MarkdownService;
@@ -19,7 +19,7 @@ public class MarkdownServiceImpl implements MarkdownService {
     private MarkdownHelper markdownHelper;
 
     @Autowired
-    private GitHelper gitHelper;
+    private BookGitHelper gitHelper;
 
 
     @Override

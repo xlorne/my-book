@@ -7,9 +7,10 @@ import com.codingapi.book.mybook.model.Catalog;
  * @date 2018/9/14
  * @description
  */
-public interface GitService {
+public interface BookService {
 
     Catalog loadCatalog();
 
 
+    boolean refresh(String token);
 }

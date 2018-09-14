@@ -3,7 +3,7 @@ package com.codingapi.book.mybook;
 import com.alibaba.fastjson.JSON;
 import com.codingapi.book.mybook.model.Book;
 import com.codingapi.book.mybook.model.Catalog;
-import com.codingapi.book.mybook.service.GitService;
+import com.codingapi.book.mybook.service.BookService;
 import com.codingapi.book.mybook.service.MarkdownService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class MyBookApplicationTests {
 
 
     @Autowired
-    private GitService gitService;
+    private BookService gitService;
 
     @Autowired
     private MarkdownService markdownService;

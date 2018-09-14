@@ -44,6 +44,12 @@ public class MyBookConfig {
     private String gitSavePath;
 
 
+    /**
+     * pull remote git token.
+     */
+    private String refreshToken;
+
+
 
 
 

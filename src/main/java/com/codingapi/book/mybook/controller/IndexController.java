@@ -1,6 +1,6 @@
 package com.codingapi.book.mybook.controller;
 
-import com.codingapi.book.mybook.service.GitService;
+import com.codingapi.book.mybook.service.BookService;
 import com.codingapi.book.mybook.service.MarkdownService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
 
     @Autowired
-    private GitService gitService;
+    private BookService gitService;
 
     @Autowired
     private MarkdownService markdownService;
