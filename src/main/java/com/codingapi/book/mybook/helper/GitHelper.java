@@ -92,7 +92,7 @@ public class GitHelper {
     }
 
     private String getGitTitle(String filePath) {
-        File file = new File(myBookConfig.getGitSavePath()+"/"+filePath);
+        File file = new File(myBookConfig.getGitSavePath()+filePath);
         String line =  MyFileUtils.readOneLine(file);
         line = line.replaceAll("#","");
         line = line.trim();
@@ -103,6 +103,7 @@ public class GitHelper {
     private Catalog loadCatalogTree(String path){
         Catalog catalog = new Catalog();
         hadReady();
+        catalog.setPath(path);
         List<Catalog> catalogs = new ArrayList<>();
         String[] files = fileList(path);
         for(String file:files){
@@ -112,12 +113,12 @@ public class GitHelper {
             }
             //加入md文件
             if(file.toLowerCase().endsWith("md")) {
-                String title = getGitTitle(file);
+                String title = getGitTitle(path+file);
                 catalogs.add(new Catalog(title,file));
             }else {
                 File directoryFile = new File(myBookConfig.getGitSavePath()+ path+file);
                 if (directoryFile.isDirectory()) {
-                    Catalog node = loadCatalogTree(path+file);
+                    Catalog node = loadCatalogTree(path+file+"/");
                     if(!node.hasNull()) {
                         catalogs.add(node);
                     }

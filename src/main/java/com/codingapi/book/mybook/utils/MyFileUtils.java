@@ -22,6 +22,7 @@ public class MyFileUtils {
             final BufferedReader reader = IOUtils.toBufferedReader(streamReader);
             return reader.readLine();
         }catch (Exception e){
+            e.printStackTrace();
             return "no data";
         }
     }

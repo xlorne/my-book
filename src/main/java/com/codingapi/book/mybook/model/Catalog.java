@@ -16,31 +16,29 @@ import java.util.List;
 @AllArgsConstructor
 public class Catalog {
 
-    private String name;
+    private String title;
     private String path;
 
     private List<Catalog> list;
 
-    public Catalog(String name, String path) {
-        this.name = name;
+    public Catalog(String title, String path) {
+        this.title = title;
         this.path = path;
     }
 
     private boolean hasNoValue(){
-        return name==null&&path==null;
+        return title ==null;
     }
 
     public boolean hasNull(){
-        if(hasNoValue()) {
-            if(list!=null&&list.size()>1) {
-                for (Catalog node : list) {
-                    if (node.hasNoValue()) {
-                        return true;
-                    }
+        if(list!=null&&list.size()>0) {
+            for (Catalog node : list) {
+                if (node.hasNoValue()) {
+                    return true;
                 }
-            }else{
-                return true;
             }
+        }else{
+            return true;
         }
         return false;
     }
