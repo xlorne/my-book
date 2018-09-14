@@ -15,29 +15,46 @@
 
     <script th:inline="javascript" type="text/javascript">
 
-        var loadDocs = function(){
 
-            var div = $("#div");
-
-            var apis = div.find("api");
-
-            $(apis).each(function () {
-               var api = $(this);
-               var path = api.attr("name");
-               console.log(path);
-               api.append("<p>"+path+"</p>");
-            });
-
-
+        var loadTree = function(html,list){
+            for(var index = 0;index<list.length;index++){
+                var item = list[index];
+                console.log(item);
+                if(item.list!=null){
+                    html+='<li>'+item.path+'</li>';
+                    html+='<ul>';
+                    html = loadTree(html,item.list);
+                    html+='</ul>';
+                }else{
+                    html+='<li>'+item.title+'</li>';
+                }
+            }
+            return html;
         }
 
-        $(document).ready(function () {
+        var loadListView = function(){
+            var list = [[${catalogs}]];
+            console.log(list);
+            $("#catalogs").empty();
+            var html = loadTree('',list.list);
+            console.log(html);
+            $("#catalogs").append(html);
+        };
+
+        var loadIndexView = function(){
             var html = [[${index.content}]];
             console.log(html);
             $("#div").html(html);
             $('pre code').each(function(i, block) {
                 hljs.highlightBlock(block);
             });
+        };
+
+
+        $(document).ready(function () {
+            loadListView();
+
+            loadIndexView();
 
             $.goup({
                 trigger: 100,
@@ -47,12 +64,15 @@
             });
 
 
-            loadDocs();
-
         });
     </script>
 </head>
 <body>
+
+<ul id="catalogs">
+
+</ul>
+
 <div class="container" id="div"></div>
 </body>
 
