@@ -67,7 +67,7 @@ public class BookGitHelper {
     private Catalog loadCatalogTree(String path){
         Catalog catalog = new Catalog();
         catalog.setPath(path);
-        catalog.setTitle(catalog.getPath().replaceAll("/",""));
+        catalog.defaultTitle();
         List<Catalog> catalogs = new ArrayList<>();
         String[] files = fileList(path);
         for(String file:files){

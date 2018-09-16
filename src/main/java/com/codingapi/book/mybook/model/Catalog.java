@@ -42,4 +42,15 @@ public class Catalog {
         }
         return false;
     }
+
+    public void defaultTitle() {
+        String defaultTitle = getPath();
+        if(defaultTitle.startsWith("/")){
+            defaultTitle = defaultTitle.substring(1,defaultTitle.length());
+        }
+        if(defaultTitle.endsWith("/")){
+            defaultTitle = defaultTitle.substring(0,defaultTitle.length()-1);
+        }
+        this.title = defaultTitle;
+    }
 }
