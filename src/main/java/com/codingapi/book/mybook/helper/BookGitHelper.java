@@ -67,6 +67,7 @@ public class BookGitHelper {
     private Catalog loadCatalogTree(String path){
         Catalog catalog = new Catalog();
         catalog.setPath(path);
+        catalog.setTitle(catalog.getPath().replaceAll("/",""));
         List<Catalog> catalogs = new ArrayList<>();
         String[] files = fileList(path);
         for(String file:files){
@@ -77,7 +78,7 @@ public class BookGitHelper {
             //加入md文件
             if(file.toLowerCase().endsWith("md")) {
                 String title = getGitTitle(path+file);
-                catalogs.add(new Catalog(title,file));
+                catalogs.add(new Catalog(title,path+file));
             }else {
                 File directoryFile = new File(myBookConfig.getGitSavePath()+ path+file);
                 if (directoryFile.isDirectory()) {
@@ -109,15 +110,29 @@ public class BookGitHelper {
         Book book = new Book();
         book.setContent("no data");
         book.setTitle("book");
-
+        book.setPath(path);
         File indexFile = new File(myBookConfig.getGitSavePath()+"/"+ path);
         if(indexFile.exists()){
-            try {
-                String content =  FileUtils.readFileToString(indexFile,"utf8");
-                book.setContent(content);
-                book.setTitle(getContentTitle("/"+path));
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if(indexFile.isDirectory()){
+                String fileNames[] = indexFile.list();
+                for(String name:fileNames){
+                    if(name.endsWith("md")){
+                        indexFile = new File(myBookConfig.getGitSavePath()+"/"+ path+"/"+name);
+                        book.setPath(path+"/"+name);
+                        break;
+                    }
+                }
+            }
+
+            if(indexFile.isFile()) {
+                try {
+                    String content = FileUtils.readFileToString(indexFile, "utf8");
+                    book.setContent(content);
+                    book.setTitle(getContentTitle(book.getPath()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return book;

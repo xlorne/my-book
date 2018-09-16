@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Book {
 
+    private String path;
+
     private String title;
 
     private String content;

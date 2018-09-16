@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,10 +35,19 @@ public class IndexController {
     }
 
 
-    @RequestMapping(value = "/view",method = RequestMethod.GET)
-    public String view(Model model,@RequestParam("path") String path){
-        model.addAttribute("view",markdownService.loadView(path));
-        return "view";
+    @RequestMapping(value = "/view/{path}/{file}",method = RequestMethod.GET)
+    public String view(Model model,@PathVariable("path") String path,@PathVariable("file") String file){
+        model.addAttribute("catalogs",gitService.loadCatalog());
+        model.addAttribute("index",markdownService.loadView(path+"/"+file));
+        return "index";
+    }
+
+
+    @RequestMapping(value = "/view/{file}",method = RequestMethod.GET)
+    public String view(Model model,@PathVariable("file") String file){
+        model.addAttribute("catalogs",gitService.loadCatalog());
+        model.addAttribute("index",markdownService.loadView(file));
+        return "index";
     }
 
 }
