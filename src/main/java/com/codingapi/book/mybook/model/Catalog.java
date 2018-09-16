@@ -23,11 +23,16 @@ public class Catalog {
 
     public Catalog(String title, String path) {
         this.title = title;
-        this.path = path;
+        this.path = path.toLowerCase();
     }
 
     private boolean hasNoValue(){
         return title ==null;
+    }
+
+    public void setPath(String path){
+        this.path = path;
+        this.path = this.path.toLowerCase();
     }
 
     public boolean hasNull(){
@@ -53,4 +58,6 @@ public class Catalog {
         }
         this.title = defaultTitle;
     }
+
+
 }

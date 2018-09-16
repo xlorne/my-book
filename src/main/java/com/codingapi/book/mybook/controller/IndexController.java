@@ -39,7 +39,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = "/view/{path1}/{file2}/{file}",method = RequestMethod.GET)
+    @RequestMapping(value = "/view/{path1}/{path2}/{file}",method = RequestMethod.GET)
     public String view(Model model,@PathVariable("path1") String path1,@PathVariable("path2") String path2,@PathVariable("file") String file) {
         model.addAttribute("catalogs", gitService.loadCatalog());
         model.addAttribute("index", markdownService.loadView(path1 + "/" + path2 + "/" + file));

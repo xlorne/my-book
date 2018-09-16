@@ -4,6 +4,7 @@ import com.codingapi.book.mybook.helper.BookGitHelper;
 import com.codingapi.book.mybook.helper.MarkdownHelper;
 import com.codingapi.book.mybook.model.Book;
 import com.codingapi.book.mybook.service.MarkdownService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
+@Slf4j
 public class MarkdownServiceImpl implements MarkdownService {
 
     @Autowired
@@ -24,6 +26,7 @@ public class MarkdownServiceImpl implements MarkdownService {
 
     @Override
     public Book loadView(String path) {
+        log.info("load view --- path->{}",path);
         Book book = gitHelper.getContentBook(path);
         book.setContent(markdownHelper.parseMarkdownString(book.getContent()));
         return book;
