@@ -73,13 +73,46 @@
                 active = active.parent();
             }
 
-
         };
 
         var loadIndexView = function(){
             var html = [[${index.content}]];
             // console.log(html);
             $("#main").html(html);
+
+            $("#title").empty();
+
+            var lastTagName = 'H2';
+
+            var titleHtml = '';
+            $("#main").children().each(function(index, element) {
+                var tag = $(this);
+                var tagName=tag.get(0).tagName;
+                if(tagName.substr(0,1).toUpperCase()=="H"){
+                    // console.log(tagName,tag.html());
+                    var content = tag.html();
+                    if(lastTagName == 'H3'&&tagName=='H2'){
+                        titleHtml+='</ul>';
+                    }
+                    if(tagName == 'H2'){
+                        titleHtml+='<li class="toc-entry toc-h2"><a href="#'+content+'">'+content+'</a></li>';
+                    }
+                    if(tagName == 'H3'){
+                        if(lastTagName=='H2'){
+                            titleHtml+='<ul>';
+                        }
+                        titleHtml+='<li class="toc-entry toc-h3"><a href="#'+content+'">'+content+'</a></li>';
+                    }
+                    lastTagName = tagName;
+                }
+
+            });
+
+
+            $("#title").append(titleHtml);
+
+
+
             $('pre code').each(function(i, block) {
                 hljs.highlightBlock(block);
             });
@@ -160,6 +193,11 @@
         <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
             <nav class="collapse bd-links" id="bd-docs-nav">
             </nav>
+        </div>
+
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+            <ul class="section-nav" id="title">
+            </ul>
         </div>
 
         <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" id="main" role="main">
