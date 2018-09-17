@@ -16,7 +16,7 @@ markdown基础操作
 支持toc目录  
 
 
-## 框架解释
+## 技术介绍
 
 1. 项目通过git迁移下远程的markdown项目来;
 2. 然后通过flexmark将markdown项目转成html形式
