@@ -10,5 +10,5 @@ import org.springframework.http.ResponseEntity;
  */
 public interface StaticService {
 
-    ResponseEntity<InputStreamResource> loadStream(String file);
+    ResponseEntity<InputStreamResource> loadStream(String file,String w,String h);
 }
