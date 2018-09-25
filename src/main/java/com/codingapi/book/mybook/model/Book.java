@@ -1,5 +1,6 @@
 package com.codingapi.book.mybook.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     private String path;
@@ -18,16 +20,5 @@ public class Book {
 
     private String content;
 
-    public Book(String path, String title,String content) {
-        this.title = title;
-        this.path = path.toLowerCase();
-        this.content =content;
-    }
-
-
-    public void setPath(String path){
-        this.path = path;
-        this.path = this.path.toLowerCase();
-    }
 
 }

@@ -23,7 +23,7 @@ public class Catalog {
 
     public Catalog(String title, String path) {
         this.title = title;
-        this.path = path.toLowerCase();
+        this.path = path;
     }
 
     private boolean hasNoValue(){
@@ -32,7 +32,6 @@ public class Catalog {
 
     public void setPath(String path){
         this.path = path;
-        this.path = this.path.toLowerCase();
     }
 
     public boolean hasNull(){

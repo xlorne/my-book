@@ -32,7 +32,14 @@ public class BookGitHelper {
 
     private boolean gitHasExist(){
         File file = new File(myBookConfig.getGitSavePath());
-        return file.exists();
+        if(file.isDirectory()) {
+            for(String name:file.list()){
+                if(name.equalsIgnoreCase(".git")){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
@@ -72,11 +79,11 @@ public class BookGitHelper {
         String[] files = fileList(path);
         for(String file:files){
             //过滤.git
-            if(file.toLowerCase().endsWith(".git")) {
+            if(file.endsWith(".git")) {
                 continue;
             }
             //加入md文件
-            if(file.toLowerCase().endsWith("md")) {
+            if(file.endsWith("md")) {
                 String title = getGitTitle(path+file);
                 catalogs.add(new Catalog(title,path+file));
             }else {

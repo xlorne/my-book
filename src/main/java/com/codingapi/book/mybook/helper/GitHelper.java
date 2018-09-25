@@ -2,6 +2,7 @@ package com.codingapi.book.mybook.helper;
 
 import com.codingapi.book.mybook.config.MyBookConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author lorne
@@ -24,13 +26,20 @@ public class GitHelper {
     private MyBookConfig myBookConfig;
 
     public boolean download(){
+        File file = new File(myBookConfig.getGitSavePath());
+        try {
+            FileUtils.deleteDirectory(file);
+        } catch (IOException e) {
+            log.error(e.getLocalizedMessage(),e);
+            return false;
+        }
         UsernamePasswordCredentialsProvider usernamePasswordCredentialsProvider =new
                 UsernamePasswordCredentialsProvider(myBookConfig.getGitUserName(),myBookConfig.getGitPassword());
         CloneCommand cloneCommand = Git.cloneRepository();
         try {
             Git git = cloneCommand.setURI(myBookConfig.getGitUrl())
                     .setBranch(myBookConfig.getGitBranch())
-                    .setDirectory(new File(myBookConfig.getGitSavePath()))
+                    .setDirectory(file)
                     .setCredentialsProvider(usernamePasswordCredentialsProvider)
                     .call();
             log.info("git-download-res->{}",git.tag());
