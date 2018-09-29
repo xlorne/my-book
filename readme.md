@@ -78,11 +78,3 @@ codingapi.mybook.refresh-token=123456
 https://github.com/1991wangliang/lorne-book
 
 
-
-```sequence
-张三->李四: 嘿，小四儿, 写博客了没?
-Note right of 李四: 李四愣了一下，说：
-李四->王五: 嘿，小四儿, 写博客了没?
-Note right of 李四: 李四愣了一下，说：
-张三->王五: 忙得吐血，哪有时间写。
-```
