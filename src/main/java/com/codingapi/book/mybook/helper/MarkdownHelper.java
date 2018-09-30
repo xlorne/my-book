@@ -1,6 +1,8 @@
 package com.codingapi.book.mybook.helper;
 
 import com.vladsch.flexmark.ast.Document;
+import com.vladsch.flexmark.ext.emoji.EmojiExtension;
+import com.vladsch.flexmark.ext.enumerated.reference.EnumeratedReferenceExtension;
 import com.vladsch.flexmark.ext.footnotes.FootnoteExtension;
 import com.vladsch.flexmark.ext.tables.TablesExtension;
 import com.vladsch.flexmark.ext.toc.TocExtension;
@@ -22,7 +24,7 @@ public class MarkdownHelper {
 
     public String parseMarkdownString(String markdown){
         MutableDataSet options = new MutableDataSet();
-        options.setFrom(ParserEmulationProfile.MARKDOWN);
+        options.setFrom(ParserEmulationProfile.MARKDOWN );
         options.set(Parser.EXTENSIONS,
                 Arrays.asList(
                         //表格支出
@@ -30,7 +32,9 @@ public class MarkdownHelper {
                         //Toc支持
                         TocExtension.create(),
                         //脚本
-                        FootnoteExtension.create()
+                        FootnoteExtension.create(),
+
+                        EmojiExtension.create()
                 ));
         Parser parser = Parser.builder(options).build();
         HtmlRenderer renderer = HtmlRenderer.builder(options).build();
