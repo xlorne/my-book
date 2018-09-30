@@ -64,6 +64,7 @@ codingapi.mybook.refresh-token=123456
 ## 效果
 
 ![](mybook.jpg)
+![](mybook2.png)
 
 
 
