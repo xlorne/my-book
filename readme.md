@@ -14,8 +14,8 @@ markdown基础操作
 支持对markdown的图片做大小控制  
 支持table  
 支持toc目录  
-支持flow流程图
-支持sequence时序图
+支持flow流程图  
+支持sequence时序图  
 
 
 ## 技术介绍
